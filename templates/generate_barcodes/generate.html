@@ -5,6 +5,36 @@
 {% block content %}
 <div class="row">
     <h2>Generate Barcodes</h2>
+    <p>
+        Use the options below to generate a barcode.<br />
+        The generated barcode will be downloaded with a prompt window asking you to save locally to your computer.<br />
+        Barcode types are currently limited to 3 for demonstration purpose only.<br />
+        For notes and project documentation, please check README of the <a href="https://github.com/py404/Django-OpenCV-Barcodes" target="_blank">project here</a>.
+    </p>
     <hr />
+
+    <div class="col-md-10 mx-auto">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group row">
+                <div class="col-sm-5">
+                    <label for="typeOfBarcode">Choose a barcode type from the dropdown menu</label>
+                    <select class="form-control" id="typeOfBarcode" name="typeOfBarcode">
+                        {% for barcode_type in barcode_types %}
+                        <option>{{ barcode_type }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-sm-5">
+                    <label for="barcodeData">Add barcode data</label>
+                    <input type="text" id="barcodeData" name="barcodeData" class="form-control input" required />
+                </div>
+                <div class="col-sm-2">
+                    <label for="btnGenerate">Click to generate</label>
+                    <button type="submit" id="btnGenerate" class="form-control btn btn-primary">Generate Barcode</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock content %}
