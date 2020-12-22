@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "15bd73a45bed7d29d1c36153f4e411837dbde2e274d85eb15e2e05471da3b6aa"
+            "sha256": "c88ddd208c8cb907af9217332f91d19fe8de1d6e5acab5ea33722cbd2ea02519"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -23,14 +23,6 @@
             ],
             "markers": "python_version >= '3.5'",
             "version": "==3.3.1"
-        },
-        "colorama": {
-            "hashes": [
-                "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b",
-                "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"
-            ],
-            "markers": "platform_system == 'Windows'",
-            "version": "==0.4.4"
         },
         "django": {
             "hashes": [
@@ -138,6 +130,7 @@
                 "sha256:eb472586374dc66b31e36e14720747595c2b265ae962987261f044e5cce644b5",
                 "sha256:fbd922f702582cb0d71ef94442bfca57624352622d75e3be7a1e7e9360b07e72"
             ],
+            "markers": "python_version >= '3.6'",
             "version": "==8.0.1"
         },
         "python-dotenv": {
@@ -164,25 +157,6 @@
             "index": "pypi",
             "version": "==0.1.8"
         },
-        "qrcode": {
-            "extras": [
-                "pil"
-            ],
-            "hashes": [
-                "sha256:3996ee560fc39532910603704c82980ff6d4d5d629f9c3f25f34174ce8606cf5",
-                "sha256:505253854f607f2abf4d16092c61d4e9d511a3b4392e60bff957a68592b04369"
-            ],
-            "index": "pypi",
-            "version": "==6.1"
-        },
-        "six": {
-            "hashes": [
-                "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259",
-                "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"
-            ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'",
-            "version": "==1.15.0"
-        },
         "sqlparse": {
             "hashes": [
                 "sha256:017cde379adbd6a1f15a61873f43e8274179378e95ef3fede90b5aa64d304ed0",
@@ -190,6 +164,14 @@
             ],
             "markers": "python_version >= '3.5'",
             "version": "==0.4.1"
+        },
+        "treepoem": {
+            "hashes": [
+                "sha256:10df22747d839290fb162fda1d1229e84753b929c20700afbb3a771b02c201b5",
+                "sha256:630b3cc94cdf189d01429577d1954228d9c9494ad04cfed1c36cb99a8b8287dd"
+            ],
+            "index": "pypi",
+            "version": "==3.7.0"
         }
     },
     "develop": {}
