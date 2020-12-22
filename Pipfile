@@ -11,7 +11,9 @@ opencv-python = "*"
 pyzbar = "*"
 numpy = "*"
 python-dotenv = "*"
-treepoem = "*"
+python-barcode = "*"
+pillow = "*"
+qrcode = {extras = ["pil"], version = "*"}
 
 [requires]
 python_version = "3.7"
