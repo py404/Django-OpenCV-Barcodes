@@ -6,5 +6,18 @@
 <div class="row">
     <h2>Detect Barcodes</h2>
     <hr />
+
+    {% if cam_status %}
+    <h3>Camera stream status: connected</h3>
+    <img src="{% url 'camera_feed' %}" style="width: 640px; height: 480px;" />
+    {% else %}
+    <h3>Camera stream status: Camera is either not accessible or busy</h3>
+    <h5>Things to check:</h5>
+    <ul class="text-right list-inline">
+        <li>USB connection?</li>
+        <li>Camera number in your .env file?</li>
+        <li>Camera is already in use?</li>
+    </ul>
+    {% endif %}
 </div>
 {% endblock content %}
