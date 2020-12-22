@@ -19,4 +19,5 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('detect_barcodes.urls')),
+    path('generate/', include('generate_barcodes.urls')),
 ]
