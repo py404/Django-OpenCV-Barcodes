@@ -1,13 +1,18 @@
 import os
+from datetime import datetime
 
 import cv2
 import numpy as np
 from pyzbar.pyzbar import decode
 
 
-class CameraStream:
+class CameraStreamingWidget:
     def __init__(self):
         self.camera = cv2.VideoCapture(int(os.environ.get('CAMERA')))
+        self.media_path = os.path.join(os.getcwd(), "media", "images")
+        # create "media/images" folder if doesn't exist
+        if not self.media_path:
+            os.mkdir(self.media_path)
 
     def get_frames(self):
         while True:
@@ -23,11 +28,24 @@ class CameraStream:
                 color_image = np.asanyarray(frame)
 
                 # decode numpy array to check if there is a barcode in color_image
+                # you can add a custom check here to verify if the qr code has right identifier information
                 if decode(color_image):
                     for barcode in decode(color_image):
                         barcode_data = (barcode.data).decode('utf-8')
                         # if barcode data exists
-                        if barcode_data:
+                        if barcode_data:                            
+                            # save file as PNG if a QR code is detected
+                            today = str(datetime.now().strftime("%d-%m-%y"))
+                            image = os.path.join(self.media_path, f"img_{today}.png")
+                            cv2.imwrite(image, frame)
+                            
+                            # print info for debugging purpose
+                            print('-'*50)
+                            print('Saving image to media...')
+                            print('-'*50)
+                            print(f'Saved as: {image}')
+                            print('-'*50)
+                            
                             pts = np.array([barcode.polygon], np.int32)
                             pts = pts.reshape((-1,1,2))
                             # draw polylines on the barcode
