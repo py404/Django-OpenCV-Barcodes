@@ -13,18 +13,73 @@
         3. Generating a secret key for your django application
     </p>
     <hr />
-
-    {% if cam_status %}
-    <h3>Camera stream status: connected</h3>
-    <img src="{% url 'camera_feed' %}" style="width: 640px; height: 480px;" />
-    {% else %}
-    <h3>Camera stream status: Camera is either not accessible or busy</h3>
-    <h5>Things to check:</h5>
-    <ul class="text-right list-inline">
-        <li>USB connection?</li>
-        <li>Camera number in your .env file?</li>
-        <li>Camera is already in use?</li>
-    </ul>
-    {% endif %}
+    <div class="col-md-6">
+        {% if cam_status %}
+        <h3>Camera stream status: connected</h3>
+        <img src="{% url 'camera_feed' %}" style="width: 640px; height: 480px;" />
+        {% else %}
+        <h3>Camera stream status: Camera is either not accessible or busy</h3>
+        <h5>Things to check:</h5>
+        <ul class="text-right list-inline">
+            <li>USB connection?</li>
+            <li>Camera number in your .env file?</li>
+            <li>Camera is already in use?</li>
+        </ul>
+        {% endif %}
+    </div>
+    <div class="col-md-6">
+        <p>
+          Point the QR code facing to the camera. After a valid barcode is found, an
+          image is saved automatically to "media/images" folder.
+        </p>
+        <p>
+          After that, click the button below to analyse and read your barcode data.
+        </p>
+        <div class="alert alert-warning" role="alert">
+          Note: If file or data is not found, a message is displayed with an error message.
+        </div>
+        <form>
+          <div class="form-group">
+            <label id="lbl_BarcodeData" for="txt_BarcodeData">Barcode Data:</label>
+            <textarea class="form-control" id="txt_BarcodeData" rows="3"></textarea>
+            <label id="lbl_LastModified">Last modified at:</label>
+          </div>
+        </form>
+        <br />
+        <a id="btn_ReadQRCode" class="btn btn-primary" href="#">Read QR code data</a>
+    </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script>
+    $("#btn_ReadQRCode").on("click", function (e) {
+        console.log("Ajax request triggered.");
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "{% url 'camera_feed' %}",
+            data: {
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+                dataType: "json",
+            },
+            success: function (data) {
+                if (data.barcode_data !== null && data.barcode_data !== '') {
+                    console.log(data);
+                    $("#txt_BarcodeData").html(data.barcode_data);
+                    $("#lbl_LastModified").html(
+                        "Last modified at: " + data.file_saved_at
+                    );
+                } else {
+                    console.log(data);
+                    $("#txt_BarcodeData").html("");
+                    $("#lbl_LastModified").html("<h3><em>No data or file not found. Scan barcode again.</em></h3>");
+                }
+            },
+            error: function () {
+                console.log(error);
+            }
+        });
+    });
+</script>
 {% endblock content %}
