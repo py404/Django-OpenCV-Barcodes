@@ -12,6 +12,22 @@ The goal is to integrate OpenCV and Django as a complete web application, draw p
 
 ## Examples
 
+> Update: 15-Sept-2021
+>
+> Features:
+>
+> - added feature to detect and fetch QR code data using Ajax
+
+### *Detect QR code and fetch barcode data*
+
+#### Point QR code and fetch data using Ajax
+
+![detect_qr_code.gif](images/detect_qr_code.gif)
+
+#### Ajax fetching - console log example
+
+![ajax_request.gif](images/ajax_request.gif)
+
 ### *Detect barcodes example*
 
 ![detect_barcodes.gif](images/detect_barcodes.gif)
